@@ -496,11 +496,11 @@ class OC_FileCache{
 	 */
 	public static function triggerUpdate($user=''){
 		if($user) {
-			$query=OC_DB::prepare('UPDATE `*PREFIX*fscache` SET `mtime`=0 WHERE `user`=? AND `mimetype`=?');
-			$query->execute(array($user,"httpd/unix-directory"));
+			$query=OC_DB::prepare('UPDATE `*PREFIX*fscache` SET `mtime`=? WHERE `user`=? AND `mimetype`=?');
+			$query->execute(array(0,$user,"httpd/unix-directory"));
 		}else{
-			$query=OC_DB::prepare('UPDATE `*PREFIX*fscache` SET `mtime`=0 AND `mimetype`=?');
-			$query->execute(array("httpd/unix-directory"));
+			$query=OC_DB::prepare('UPDATE `*PREFIX*fscache` SET `mtime`=? AND `mimetype`=?');
+			$query->execute(array(0,"httpd/unix-directory"));
 		}
 	}
 }
